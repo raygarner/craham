@@ -7,6 +7,7 @@ int main(int argc, char **argv)
     AB ab;
     int eval;
     int colour = WHITE;
+    int start, end;
 
 
 
@@ -20,21 +21,19 @@ int main(int argc, char **argv)
 
 
     while(1) {
-/*         movePrompt(allPieces); */
+        movePrompt(allPieces);
+
+        printBoard(allPieces);
 
 
-
-/*         printBoard(allPieces); */
-
-
-
-        computerMove = findMostEpicMove(ab,4,colour,allPieces);
+        start = clock();
+        computerMove = findMostEpicMove(ab,6,BLACK,allPieces);
+        end = clock();
         executeMove(computerMove.piece, computerMove.move, allPieces);
-        printf("%d\n", computerMove.eval);
 
         printf("\n");
+        printf("%ds\n", (end - start) / CLOCKS_PER_SEC);
         printBoard(allPieces);
-        printf("white: %d\tblack: %d\n", totalMaterial(WHITE, allPieces), totalMaterial(BLACK,allPieces));
 
         colour = !colour;
 

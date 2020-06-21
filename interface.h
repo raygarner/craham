@@ -4,6 +4,7 @@
 /*libs*/
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 /*defs*/
 #define LENGTH 32
@@ -110,6 +111,7 @@ int willBeInCheck(Piece piece, Tuple move, Piece *allPieces);
 Piece *promotePawn(Piece piece, Tuple move, Piece *allPieces);
 int isLastAction(Action action);
 int comparePieces(Piece pieceA, Piece pieceB);
+int lesser(int a, int b);
 
 /*init.c*/
 int addAllPieces(Piece *allPieces);
@@ -131,6 +133,7 @@ int evalPiece(Piece piece);
 int evalKnight(Piece piece);
 int evalBishop(Piece piece);
 int evalKing(Piece piece);
+int howCentral(Tuple pos);
 
 /*search.c*/
 Action findMostEpicMove(AB ab, int depth, int colour, Piece *allPieces);

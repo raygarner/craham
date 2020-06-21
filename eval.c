@@ -126,6 +126,8 @@ int evalPiece(Piece piece)
 /* gets the value from the knight bitboard */
 int evalKnight(Piece piece)
 {
+
+    /*
     static const int squares[] = {-50,-40,-30,-30,-30,-30,-40,-50,
                                 -40,-20,  0,  0,  0,  0,-20,-40,
                                 -30,  0, 10, 15, 15, 10,  0,-30,
@@ -135,13 +137,15 @@ int evalKnight(Piece piece)
                                 -40,-20,  0,  5,  5,  0,-20,-40,
                                 -50,-40,-30,-30,-30,-30,-40,-50};
     int i = calcIndex(piece.colour, piece.pos);
+    */
 
-    return squares[i];
+    return howCentral(piece.pos);
 }
 
 /* gets the corresponding value from the bishop bitboard */
 int evalBishop(Piece piece)
 {
+    /*
     static const int squares[] = {-20,-10,-10,-10,-10,-10,-10,-20,
                                 -10,  0,  0,  0,  0,  0,  0,-10,
                                 -10,  0,  5, 10, 10,  5,  0,-10,
@@ -153,11 +157,14 @@ int evalBishop(Piece piece)
     int i = calcIndex(piece.colour, piece.pos);
 
     return squares[i];
+    */
+    return howCentral(piece.pos);
 }
 
 /* returns the corresponding value from the king bitboard */
 int evalKing(Piece piece)
 {
+    /*
     static const int squares[] = {-30,-40,-40,-50,-50,-40,-40,-30,
                                 -30,-40,-40,-50,-50,-40,-40,-30,
                                 -30,-40,-40,-50,-50,-40,-40,-30,
@@ -169,4 +176,19 @@ int evalKing(Piece piece)
     int i = calcIndex(piece.colour, piece.pos);
 
     return squares[i];
+    */
+
+    if (piece.pos.n >= 6 || piece.pos.n <= 2)
+        return 20;
+    else
+        return 0;
+}
+
+/* returns a value based on how central the piece is*/
+int howCentral(Tuple pos)
+{
+    int m = lesser(pos.m, 7 - pos.m);
+    int n = lesser(pos.n, 7 - pos.n);
+
+    return 10 * (m + n);
 }

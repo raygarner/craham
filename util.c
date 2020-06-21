@@ -735,3 +735,12 @@ int comparePieces(Piece pieceA, Piece pieceB)
         pieceA.mc == pieceB.mc && pieceA.typeVal == pieceB.typeVal;
 
 }
+
+/*returns the lesser of 2 ints*/
+int lesser(int a, int b)
+{
+    if (a >= b)
+        return a;
+    else
+        return b;
+}
